@@ -8,9 +8,9 @@ public class ServerInfoEmbed : EmbedProperties
     DateTime LastChecked = DateTime.Now;
 
     public ServerInfoEmbed(ServerInfo info) : base() 
-    { 
+    {
         Title = $"**{info.Name}**";
-        Description = $"Map: `{info.CurrentMap}`\nPlayers: `{info.CurrentPlayers}/{info.MaxPlayers}`";
+        Description = $"Map: `{info.CurrentMap}`\nPlayers: `{info.GetPlayersStat()}`\n{string.Join("\n", info.Players.Select((player, i) => $"{i + 1}. {player}"))}";
         Color = info.IsOnline ? new Color(0, 255, 0) : new Color(255, 0, 0);
         Footer = new()
         {
